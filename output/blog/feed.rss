@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Emir Baycan's blog posts</title>
+        <link>https://blog.emirbaycan.com.tr/blog</link>
+        <atom:link href="https://blog.emirbaycan.com.tr/blog/feed.rss" rel="self" type="application/rss+xml" />
+        <description>Emir Baycan's most recent posts</description>
+        <language>en</language>
+        <pubDate>Tue, 27 May 2025 23:41:12 +0100</pubDate>
+        <lastBuildDate>Tue, 27 May 2025 23:41:12 +0100</lastBuildDate>
+
+        
+            <item>
+                <title>What is XSS injection?</title>
+                <link>https://blog.emirbaycan.com.tr/blog\xss-injection</link>
+                <pubDate>Fri, 28 Mar 2014 00:00:00 +0100</pubDate>
+                <author>emir-baycan@hotmail.com (Emir Baycan)</author>
+                <guid>https://blog.emirbaycan.com.tr/blog\xss-injection</guid>
+                <description>
+                    <![CDATA[<p>Bu bir testtir.</p>]]>
+                </description>
+            </item>
+        
+    </channel>
+</rss>

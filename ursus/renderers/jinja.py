@@ -218,10 +218,11 @@ class JinjaRenderer(Renderer):
             context (dict): Context object used to render the template.
             output_path (str): Path of the generated file, relative to the output_path.
         """
+        logger.info(f'Rendering {output_path} using template: {template_path}')
         logger.info('Rendering %s', str(output_path))
         abs_output_path = config.output_path / output_path
         abs_output_path.parent.mkdir(parents=True, exist_ok=True)
-        template = self.template_environment.get_template(str(template_path))
+        template = self.template_environment.get_template(str(template_path).replace("\\", "/"))
         template.stream(**context).dump(str(abs_output_path))
         yield output_path
 

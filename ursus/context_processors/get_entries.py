@@ -38,6 +38,10 @@ def get_entries(
             returned by the given function
         reverse: Reverse the sorting order
     """
+    entries = {
+        uri.replace('\\', '/'): value for uri, value in entries.items()
+    }
+    
     if namespaces:
         namespace_list = [namespaces, ] if isinstance(namespaces, str) else namespaces
         entries = {

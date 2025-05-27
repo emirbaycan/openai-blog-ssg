@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Emir Baycan's recipes</title>
+        <link>https://blog.emirbaycan.com.tr/recipes</link>
+        <atom:link href="https://blog.emirbaycan.com.tr/recipes/feed.rss" rel="self" type="application/rss+xml" />
+        <description>Emir Baycan's most recent recipes</description>
+        <language>en</language>
+        <pubDate>Tue, 27 May 2025 23:41:12 +0100</pubDate>
+        <lastBuildDate>Tue, 27 May 2025 23:41:12 +0100</lastBuildDate>
+
+        
+            <item>
+                <title>Creamy zucchini pasta</title>
+                <link>https://blog.emirbaycan.com.tr/recipes\zucchini-pasta</link>
+                <pubDate>Sat, 22 Feb 2025 00:00:00 +0100</pubDate>
+                <author>emir-baycan@hotmail.com (Emir Baycan)</author>
+                <guid>https://blog.emirbaycan.com.tr/recipes\zucchini-pasta</guid>
+                <description>
+                    <![CDATA[<p>This is one of my favourite weekday recipes. It&rsquo;s simple, it&rsquo;s quick, it&rsquo;s vegetarian and it&rsquo;s just amazing. Everyone loves it.</p>]]>
+                </description>
+            </item>
+        
+    </channel>
+</rss>

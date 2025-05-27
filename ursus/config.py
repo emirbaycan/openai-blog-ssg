@@ -92,9 +92,11 @@ def default_renderers() -> list[str]:
 
 @dataclass
 class UrsusConfig():
-    content_path: Path = Path('content').resolve()
-    templates_path: Path = Path('templates').resolve()
-    output_path: Path = Path('output').resolve()
+    ROOT_DIR = Path(__file__).parent.resolve()
+    
+    content_path: Path = ROOT_DIR / 'content'
+    templates_path: Path = ROOT_DIR / 'templates'
+    output_path: Path = ROOT_DIR / 'output'
     cache_path: Path = Path(user_cache_dir('ursus', 'nicolasb'))
 
     # The URL of this website's root, without a trailing slash. For example, https://allaboutberlin.com
