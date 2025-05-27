@@ -11,7 +11,12 @@
     <article>
         <header>
             <h1>{{ entry.title }}</h1>
-            <small>Posted on <time datetime="{{ entry.date_created.strftime('%F') }}">{{ entry.date_created.strftime('%B %-d, %Y') }}</time></small>
+            <small>
+                Posted on
+                <time datetime="{{ entry.date_created.strftime('%F') }}">
+                    {{ entry.date_created.strftime('%B') }} {{ entry.date_created.day }}, {{ entry.date_created.strftime('%Y') }}
+                </time>
+            </small>
         </header>
         {% if entry.featured_image|default %}
             {% image entry.featured_image %}
