@@ -3,6 +3,7 @@ from pathlib import Path
 from ursus.config import config
 import logging
 import os
+from ursus.context_processors import get_entries
 
 config.content_path = Path(__file__).parent / 'content'
 config.templates_path = Path(__file__).parent / 'templates'
@@ -15,7 +16,11 @@ config.minify_css = True
 
 config.context_processors.append('ursus.context_processors.git_date.GitDateProcessor')
 
+# Önce mevcut global'leri al
+default_globals = getattr(config, "context_globals", {})
+
 config.context_globals = {
+    **default_globals,
     'now': datetime.now(),
     'site_url': 'https://blog.emirbaycan.com.tr',
     'is_golden': lambda uri, entry: 'golden' in entry.get('categories', []),

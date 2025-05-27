@@ -1,9 +1,9 @@
 ---
-description: The personal website of Emir Baycan, a Canadian in Berlin.
-date_created: 2023-04-09
+description: The personal website of Emir Baycan
+date_created: 2025-05-27
 ---
 
-I'm a Canadian who lives in big, beautiful Berlin. I was a software engineer. Now I run [All About Berlin](https://allaboutberlin.com), a website that makes German bureaucracy less scary.
+I'm a software engineer with over 5 years of experience, specializing in developing systems, interfaces, bots, and technological solutions. I pride myself on my ability to translate project requirements into visually appealing and efficient solutions.
 
 My email is <emir-baycan@hotmail.com>.
 
