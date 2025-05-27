@@ -1,0 +1,21 @@
+{% extends "_layout.html" %}
+{% set metatitle = entry.title %}
+{% set metadescription = entry.description %}
+{% set canonicalUrl = entry.url %}
+
+{% block postHead %}
+    <link rel="index" href="{{ site_url }}/blog">
+{% endblock %}
+
+{% block content %}
+    <article>
+        <header>
+            <h1>{{ entry.title }}</h1>
+            <small>Posted on <time datetime="{{ entry.date_created.strftime('%F') }}">{{ entry.date_created.strftime('%B %-d, %Y') }}</time></small>
+        </header>
+        {% if entry.featured_image|default %}
+            {% image entry.featured_image %}
+        {% endif %}
+        {{ entry.body|render|safe }}
+    </article>
+{% endblock %}

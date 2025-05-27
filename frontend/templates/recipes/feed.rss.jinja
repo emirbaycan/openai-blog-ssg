@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Nicolas Bouliane's recipes</title>
+        <link>{{ site_url }}/recipes</link>
+        <atom:link href="{{ site_url }}/recipes/feed.rss" rel="self" type="application/rss+xml" />
+        <description>Nicolas Bouliane's most recent recipes</description>
+        <language>en</language>
+        <pubDate>{{ now.strftime("%a, %d %b %Y %H:%M:%S") }} +0100</pubDate>
+        <lastBuildDate>{{ now.strftime("%a, %d %b %Y %H:%M:%S") }} +0100</lastBuildDate>
+
+        {% for entry in get_entries('recipes', sort_by='date_created', reverse=True)[0:10] %}
+            <item>
+                <title>{{ entry.title }}</title>
+                <link>{{ entry.url }}</link>
+                <pubDate>{{ entry.date_created.strftime("%a, %d %b %Y %H:%M:%S") }} +0100</pubDate>
+                <author>contact@nicolasbouliane.com (Nicolas Bouliane)</author>
+                <guid>{{ entry.url }}</guid>
+                <description>
+                    <![CDATA[{{ entry.body }}]]>
+                </description>
+            </item>
+        {% endfor %}
+    </channel>
+</rss>

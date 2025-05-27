@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <title>{% if metatitle|default %}{{ metatitle }} - {% endif %}Nicolas Bouliane</title>
+    {% if metadescription|default %}<meta name="description" content="{{ metadescription }}">{% endif %}
+    {% if canonicalUrl|default %}<link rel="canonical" href="{{ site_url }}{{ canonicalUrl }}">{% endif %}
+    <link rel="home" href="https://nicolasbouliane.com" />
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Nicolas Bouliane's latest posts" href="{{ site_url }}/blog/feed.rss">
+    <link rel="alternate" type="application/rss+xml" title="Nicolas Bouliane's latest projects" href="{{ site_url }}/projects/feed.rss">
+    <link rel="alternate" type="application/rss+xml" title="Nicolas Bouliane's latest recipes" href="{{ site_url }}/recipes/feed.rss">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block postHead %}
+    {% endblock %}
+    <style type="text/css">
+        {% include '/css/_style.css' %}
+        {% include "/css/_codehilite.css" %}
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="/">N<span class="no-mobile">icolas </span>B<span class="no-mobile">ouliane</span></a>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/recipes">Recipes</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+<script type="text/javascript">
+{% js %}
+  /* Open footnotes when clicking on a footnote link */
+  document.querySelectorAll('.footnote-ref').forEach(link => {
+    link.addEventListener('click', e => {
+      document.getElementById('footnotes').setAttribute("open", "true"); 
+    });
+  });
+
+  document.querySelectorAll('.recipe li').forEach(li => {
+    li.addEventListener('click', e => {
+      li.classList.toggle('checked');
+    })
+  });
+{% endjs %}
+{% alljs %}
+</script>
+</html>
