@@ -40,9 +40,11 @@ services:
     volumes:
       - ./ursus:/app/ursus
       - ./bin/ursus:/app/bin/ursus:ro
-      - ./frontend/content/blog:/app/frontend/content/blog:ro
+      - ./frontend/content:/app/frontend/content:ro
+      - ./frontend/templates:/app/frontend/templates:ro
       - ./output:/app/output
       - ./ursus_config.py:/app/ursus_config.py:ro   
+      - ./.git:/app/.git:ro
     environment:
       - PYTHONPATH=/app
     env_file:

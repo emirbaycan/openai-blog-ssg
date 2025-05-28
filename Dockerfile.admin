@@ -13,7 +13,7 @@ COPY ./admin/requirements.txt /app/requirements.txt
 
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-COPY ./admin /app
+COPY ./admin .
 
 ENV DJANGO_SETTINGS_MODULE=blog.settings
 

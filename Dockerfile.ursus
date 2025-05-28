@@ -4,16 +4,24 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY ./ursus/requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./ursus ./ursus
-
-COPY ./bin/ursus /app/bin/ursus
+COPY ./ursus /app/ursus
+COPY ./bin /app/bin
+COPY ./setup.py /app/setup.py
+COPY ./SITE_README.md /app/README.md
 
 RUN chmod +x /app/bin/ursus
 
 RUN pip install .
+
+RUN git init
 
 CMD ["python", "./bin/ursus"]

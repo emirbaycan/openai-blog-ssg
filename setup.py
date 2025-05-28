@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 from pathlib import Path
-long_description = (Path(__file__).parent / "README.md").read_text()
+long_description = ''
 
 setup(
     name='emirbaycan_blog',
