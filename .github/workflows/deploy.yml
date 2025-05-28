@@ -50,4 +50,4 @@ jobs:
           cd /var/www/blog
           docker-compose down
           docker-compose up -d --build
-      timeout: 600
+      timeout-minutes: 15
