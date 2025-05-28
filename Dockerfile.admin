@@ -19,8 +19,7 @@ ENV DJANGO_SETTINGS_MODULE=blog.settings
 
 RUN mkdir -p /app/static
 
-RUN python manage.py migrate && \
+CMD python manage.py migrate && \
     python manage.py collectstatic --noinput && \
-    python create_superuser.py
-
-CMD ["gunicorn", "blog.wsgi:application", "--bind", "0.0.0.0:8000"]
+    python create_superuser.py && \
+    gunicorn blog.wsgi:application --bind 0.0.0.0:8000
