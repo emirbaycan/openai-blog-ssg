@@ -1,0 +1,25 @@
+# Dockerfile.admin
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Sistemi güncelle & bağımlılıkları yükle
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY ./admin/requirements.txt /app/requirements.txt
+
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+COPY ./admin /app
+
+ENV DJANGO_SETTINGS_MODULE=admin.settings
+
+# Statik dosya dizinini oluştur
+RUN mkdir -p /app/static
+
+# Varsayılan olarak migrate ve runserver başlat
+CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]

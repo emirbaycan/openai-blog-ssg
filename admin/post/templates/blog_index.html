@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{%  load static markdownify %}
+{% block title %}Home - Django Blog{% endblock %}
+
+{% block content %}
+    {% if special_post %}
+        <h1>{{ special_post.title }}</h1>
+        <div>{{ special_post.content|safe|markdownify }}</div>
+    {% else %}
+        <div class="jumbotron">
+            <h1 class="display-4">Hi!</h1>
+            <p class="lead">This is a minimalist blog based on django admin with bootstrap.</p>
+            <hr class="my-4">
+            <p>
+                You can access the admin panel by clicking <a href="/admin">here</a>. Or click the explore button to
+                view
+                the posts.
+            </p>
+            <a class="btn btn-primary btn-md" href="/posts" role="button">Explore</a>
+        </div>
+    {% endif %}
+{% endblock %}

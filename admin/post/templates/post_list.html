@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Post List - Django Blog{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <aside class="sidebar">
+                <h3 class="mb-4">Post Tags</h3>
+                <div class="list-group">
+                    {% for tag in tags %}
+                        <a href="{% url 'post_list' %}?q={{ tag.name }}" class="list-group-item list-group-item-action">
+                            {{ tag.name }}
+                            <span class="badge rounded-pill bg-secondary">
+                                {{ tag.post_amount }}
+                            </span>
+                        </a>
+                    {% endfor %}
+                </div>
+            </aside>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+            {% if search_query %}
+                <h3 class="mb-4">Search Results: "{{ search_query }}"</h3>
+            {% else %}
+                <h3 class="mb-4">Recent Posts</h3>
+            {% endif %}
+
+            {% if posts %}
+                {% for post in posts %}
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="card-title">{{ post.title }}</h3>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    Tag: <span class="badge bg-primary">{{ post.tag.name }}</span>
+                                </small>
+                                <br>
+                                <small class="text-muted">
+                                    Published by {{ post.author.username }} on {{ post.pub_date }}
+                                </small>
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ post.content_preview | safe }}</p>
+                            <a href="{% url 'post_detail' post.id %}" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h5 class="mb-4">No results</h5>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

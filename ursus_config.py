@@ -5,9 +5,9 @@ import logging
 import os
 from ursus.context_processors import get_entries
 
-config.content_path = Path(__file__).parent / 'content'
-config.templates_path = Path(__file__).parent / 'templates'
-config.output_path = Path(__file__).parent.parent / 'output'
+config.content_path = Path(__file__).parent / 'frontend' / 'content'
+config.templates_path = Path(__file__).parent / 'frontend' / 'templates'
+config.output_path = Path(__file__).parent / 'output'
 
 config.site_url = os.environ.get('site_url', 'https://blog.emirbaycan.com.tr')
 config.html_url_extension = ''

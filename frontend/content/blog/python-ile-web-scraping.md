@@ -1,11 +1,11 @@
 ---
-            title: Python ile web scraping
-            description: Günümüz dijital çağında, internet üzerinde sayısız veri mevcuttur.
-            date_created: 2025-05-28
-            tags: ['web', 'veri', 'python', 'scraping', 'sağlar']
-            ---
+title: Python ile web scraping
+description: Günümüz dijital çağında, internet üzerinde sayısız veri mevcuttur.
+date_created: 2025-05-28
+tags: ['web', 'veri', 'python', 'scraping', 'sağlar']
+---
 
-            # Python ile Web Scraping
+# Python ile Web Scraping
 
 Günümüz dijital çağında, internet üzerinde sayısız veri mevcuttur. Bu verileri etkili bir şekilde toplamak ve analiz etmek, birçok alanda rekabet avantajı sağlar. Python'un esnek yapısı ve geniş kütüphane desteği ile web scraping işlemleri oldukça basit ve etkili hale gelmiştir. Bu blog yazısında, Python ile web scraping yaparken kullanabileceğiniz güçlü teknikler ve ipuçlarına odaklanacağız.
 

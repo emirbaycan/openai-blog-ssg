@@ -1,11 +1,11 @@
 ---
-            title: Türkiye’de girişimcilik ekosistemi
-            description: Türkiye'de girişimcilik ekosisteminin oluşumu, 2000'li yılların başında internet şirketlerinin kurulmasıyla başladı.
-            date_created: 2025-05-28
-            tags: ['türkiye', 'girişimcilik', 'nin', 'ekosisteminin', 'yılında']
-            ---
+title: Türkiye’de girişimcilik ekosistemi
+description: Türkiye'de girişimcilik ekosisteminin oluşumu, 2000'li yılların başında internet şirketlerinin kurulmasıyla başladı.
+date_created: 2025-05-28
+tags: ['türkiye', 'girişimcilik', 'nin', 'ekosisteminin', 'yılında']
+---
 
-            # Türkiye’de Girişimcilik Ekosistemi: Geçmişten Geleceğe Bir Bakış
+# Türkiye’de Girişimcilik Ekosistemi: Geçmişten Geleceğe Bir Bakış
 
 ## Türkiye’de Girişimciliğin Tarihsel Gelişimi
 

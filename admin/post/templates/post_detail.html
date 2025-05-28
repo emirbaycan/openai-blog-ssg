@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static markdownify %}
+{% block title %}{{ post.title }} - Django Blog{% endblock %}
+
+{% block content %}
+    <!-- Breadcrumb and Main Content -->
+    <nav style="--bs-breadcrumb-divider: '>';">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">
+                <a href="{% url 'post_list' %}?q={{ post.tag.name }}">{{ post.tag.name }}</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+        </ol>
+    </nav>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h1 class="card-title">{{ post.title }} </h1>
+            <p class="card-text">
+                <small class="text-muted">
+                    Tag: <span class="badge bg-primary">{{ post.tag.name }}</span>
+                </small>
+                <br>
+                <small class="text-muted">
+                    Published by {{ post.author.username }} on {{ post.pub_date }}
+                </small>
+            </p>
+        </div>
+        <div class="card-body">
+            <div>{{ post.content | markdownify }}</div>
+        </div>
+    </div>
+{% endblock %}

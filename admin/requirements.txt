@@ -1,5 +1,9 @@
-openai
-python-dotenv
-faiss-cpu
-bs4
-requests
+asgiref==3.7.2
+bleach==6.1.0
+Django==5.0.1
+django-markdownify==0.9.3
+django-mdeditor==0.1.20
+Markdown==3.5.2
+sqlparse==0.4.4
+tinycss2==1.2.1
+django-environ==0.11.2

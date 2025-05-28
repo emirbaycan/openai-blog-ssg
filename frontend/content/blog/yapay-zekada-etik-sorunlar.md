@@ -1,11 +1,11 @@
 ---
-            title: Yapay zekada etik sorunlar
-            description: Yapay zekâ (YZ) hızla gelişerek hayatımızın her alanına nüfuz ediyor.
-            date_created: 2025-05-28
-            tags: ['etik', 'yapay', 'zekâ', 'şekilde', 'sistemlerinin']
-            ---
+title: Yapay zekada etik sorunlar
+description: Yapay zekâ (YZ) hızla gelişerek hayatımızın her alanına nüfuz ediyor.
+date_created: 2025-05-28
+tags: ['etik', 'yapay', 'zekâ', 'şekilde', 'sistemlerinin']
+---
 
-            # Yapay Zekada Etik Sorunlar
+# Yapay Zekada Etik Sorunlar
 
 Yapay zekâ (YZ) hızla gelişerek hayatımızın her alanına nüfuz ediyor. Bu teknolojinin sunduğu olanaklar kadar, karşılaştığı etik sorunlar da dikkat çekiyor. Yapay zekâ sistemlerinin geliştirilmesi ve kullanımıyla ilgili etik sorunlar, hem bireysel hem de toplumsal düzeyde önemli tartışmalara neden oluyor. Bu blog yazısında, yapay zekâda etik sorunları derinlemesine inceleyeceğiz.
 
