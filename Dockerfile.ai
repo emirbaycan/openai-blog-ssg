@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ai/. .
 COPY ai/entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
+RUN chmod +x /ai/entrypoint.sh
 
 # Hem API hem arka plan daily job çalışır!
 CMD ["./entrypoint.sh"]
