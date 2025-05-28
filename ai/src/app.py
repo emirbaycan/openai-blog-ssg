@@ -4,7 +4,7 @@ from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv() 
+load_dotenv(dotenv_path=Path(__file__).parent.parent.parent / ".env")
 
 def generate_blogs_from_titles(titles_path, web_references=3):
     titles_file = Path(titles_path)

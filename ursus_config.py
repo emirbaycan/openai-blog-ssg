@@ -4,15 +4,18 @@ from ursus.config import config
 import logging
 import os
 from ursus.context_processors import get_entries
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path=Path(__file__).parent / ".env", override=False)
 
 config.content_path = Path(__file__).parent / 'frontend' / 'content'
 config.templates_path = Path(__file__).parent / 'frontend' / 'templates'
 config.output_path = Path(__file__).parent / 'output'
 
-config.site_url = os.environ.get('site_url', 'https://blog.emirbaycan.com.tr')
-config.html_url_extension = ''
-config.minify_js = True
-config.minify_css = True
+config.site_url = os.environ.get('SITE_URL', 'https://blog.emirbaycan.com.tr')
+config.html_url_extension = os.environ.get('HTML_URL_EXTENSION', '')
+config.minify_js = os.environ.get('MINIFY_JS', 'True') == 'True'
+config.minify_css = os.environ.get('MINIFY_CSS', 'True') == 'True'
 
 config.context_processors.append('ursus.context_processors.git_date.GitDateProcessor')
 

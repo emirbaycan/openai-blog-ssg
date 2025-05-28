@@ -16,10 +16,10 @@ import environ
 
 # Initialise environment variables
 env = environ.Env()
-environ.Env.read_env(".env")
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+environ.Env.read_env(os.path.join(BASE_DIR.parent, '.env')) 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = eval(env('DEBUG'))  
+DEBUG = env.bool('DEBUG', default=False)
 
 # Set the environment variables
 # You can either set these here or set the environment variables such as:
@@ -37,7 +37,7 @@ DEBUG = eval(env('DEBUG'))
 # ALLOWED_HOSTS = ['http://example.com', 'https://example.com', 'localhost']
 # CSRF_TRUSTED_ORIGINS = ['http://example.com', 'https://example.com']
 
-hosts = eval(env('ALLOWED_HOSTS')) # .environ.get('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS', default='localhost').split(',')
 
 # Note, this assumes that the CSRF and ALLOWED hosts are the same!
 ALLOWED_HOSTS = hosts
@@ -96,11 +96,11 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB', 'myblog'),
-        'USER': os.environ.get('POSTGRES_USER', 'myuser'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'mypass'),
-        'HOST': os.environ.get('POSTGRES_HOST', 'db'),  # If docker service is called "db"
-        'PORT': '5432',
+        'NAME': env('POSTGRES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': env('POSTGRES_HOST'),
+        'PORT': env('POSTGRES_PORT'),
     }
 }
 
@@ -137,11 +137,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # If you have a 'static' folder at the project level
-    os.path.join(BASE_DIR, 'static-extensions')
-]
+STATIC_ROOT = env('DJANGO_STATIC_ROOT', default=os.path.join(BASE_DIR, 'staticfiles'))
+
+# STATICFILES_DIRS sadece development'ta anlamlıdır. Üretimde gerek yok.
+STATICFILES_DIRS = []
+if env.bool('DJANGO_DEV_MODE', default=True):
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),  # varsa
+        os.path.join(BASE_DIR, 'static-extensions')  # varsa
+    ]
 
 # enabling media uploads
 MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media')

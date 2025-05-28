@@ -5,9 +5,9 @@ services:
     image: postgres:15
     restart: always
     environment:
-      POSTGRES_DB: blogdb
-      POSTGRES_USER: bloguser
-      POSTGRES_PASSWORD: blogpass
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
@@ -20,9 +20,11 @@ services:
     volumes:
       - ./admin:/app
       - ./frontend/content/blog:/app/blog_content
-      - ./admin/static:/app/static
+      - ./admin/static:/usr/share/nginx/static:ro 
     environment:
-      - DJANGO_SETTINGS_MODULE=admin.settings
+      - DJANGO_STATIC_ROOT=/usr/share/nginx/static
+    env_file:
+      - .env
     ports:
       - "8000:8000"
     command: >
@@ -38,6 +40,8 @@ services:
       - ./frontend/content/blog:/app/frontend/content/blog:ro
       - ./output:/app/output
       - ./ursus_config.py:/app/ursus_config.py:ro   
+    env_file:
+      - .env
     command: ["python", "-m", "ursus"]
 
   ai:
@@ -46,10 +50,9 @@ services:
       dockerfile: Dockerfile.ai
     volumes:
       - ./ai:/app
-      - ./frontend/content/blog:/app/blog_content
-      - ./ai/.env:/app/.env
+      - ./frontend/content/blog:/app/blog_content 
     env_file:
-      - ./ai/.env
+      - .env
     command: ["python", "src/app.py", "titles.txt"]
 
   static:
