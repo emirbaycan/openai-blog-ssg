@@ -10,7 +10,7 @@
     <h2>Highlights</h2>
     <ul class="entry-list">
         {% for entry in get_entries(namespaces='blog', filter_by=is_golden, sort_by='date_created', reverse=True) %}
-            {% set file_name = entry.url.split('\\')[-1] + '.html' %}
+            {% set file_name = entry.url.split('/')[-1] + '.html' %}
             <li>
                 <time datetime="{{ entry.date_created.strftime('%F') }}">{{ entry.date_created.strftime('%Y') }}</time>
                 <h3><a rel="bookmark" href="{{ file_name }}">{{ entry.title }}</a></h3>
@@ -21,7 +21,7 @@
     <h2>Everything else</h2>
     <ul class="entry-list">
         {% for entry in get_entries(namespaces='blog', filter_by=is_not_golden, sort_by='date_created', reverse=True) %}
-            {% set file_name = entry.url.split('\\')[-1] + '.html' %}
+            {% set file_name = entry.url.split('/')[-1] + '.html' %}
             <li>
                 <time datetime="{{ entry.date_created.strftime('%F') }}">
                     {{ entry.date_created.strftime('%b') }} {{ entry.date_created.strftime('%Y') }}

@@ -1,3 +1,0 @@
-Yapay zekada etik sorunlar
-Türkiye’de girişimcilik ekosistemi
-Python ile web scraping
