@@ -7,7 +7,6 @@
     <header>
         <h1>Blog</h1>
     </header>
-    <h2>Highlights</h2>
     <ul class="entry-list">
         {% for entry in get_entries(namespaces='blog', filter_by=is_golden, sort_by='date_created', reverse=True) %}
             {% set file_name = entry.url.split('/')[-1] + '.html' %}
@@ -18,7 +17,6 @@
             </li>
         {% endfor %}
     </ul> 
-    <h2>Everything else</h2>
     <ul class="entry-list">
         {% for entry in get_entries(namespaces='blog', filter_by=is_not_golden, sort_by='date_created', reverse=True) %}
             {% set file_name = entry.url.split('/')[-1] + '.html' %}
