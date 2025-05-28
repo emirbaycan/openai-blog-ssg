@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'post',
     'tag',
     'mdeditor',
+    'blog_creation_queue',
     'markdownify.apps.MarkdownifyConfig',
 ]
 

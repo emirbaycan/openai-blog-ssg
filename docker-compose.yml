@@ -55,12 +55,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.ai
+    ports:
+      - "5000:5000"
     volumes:
       - ./ai:/app
       - ./frontend/content/blog:/app/blog_content 
     env_file:
       - .env
-    command: ["python", "src/app.py", "titles.txt"]
 
   static:
     image: nginx:alpine
