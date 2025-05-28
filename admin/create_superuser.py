@@ -24,9 +24,9 @@ if not User.objects.filter(username=superuser_username).exists():
 else:
     print(f"Superuser '{superuser_username}' already exists.")
 
-ai_username = env("AI_BOT_USERNAME", default="ai-bot")
-ai_email = env("AI_BOT_EMAIL", default="ai-bot@yourdomain.com")
-ai_password = env("AI_BOT_PASSWORD", default="defaultpassword")
+ai_username = env("DJANGO_AI_BOT_USERNAME", default="ai-bot")
+ai_email = env("DJANGO_AI_BOT_EMAIL", default="ai-bot@yourdomain.com")
+ai_password = env("DJANGO_AI_BOT_PASSWORD", default="defaultpassword")
 
 if not User.objects.filter(username=ai_username).exists():
     user = User.objects.create_user(username=ai_username, email=ai_email, password=ai_password)

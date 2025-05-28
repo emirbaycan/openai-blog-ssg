@@ -42,6 +42,14 @@ def get_or_create_tag(conn, tag_name):
     cur.close()
     return tag_id
 
+def get_ai_bot_user_id(conn, username="ai-bot"):
+    with conn.cursor() as cur:
+        cur.execute("SELECT id FROM auth_user WHERE username = %s", (username,))
+        row = cur.fetchone()
+    if row:
+        return row[0]
+    raise ValueError(f"User '{username}' not found in auth_user table.")
+
 def insert_post_to_db(title, content, description, tags):
     conn = psycopg2.connect(
         host=os.environ.get("POSTGRES_HOST", "localhost"),
@@ -50,9 +58,12 @@ def insert_post_to_db(title, content, description, tags):
         user=os.environ.get("POSTGRES_USER"),
         password=os.environ.get("POSTGRES_PASSWORD"),
     )
+    
+    author_id = get_ai_bot_user_id(conn, "ai-bot") 
+    
     tag_id = None
     if tags and len(tags) > 0:
-        tag_id = get_or_create_tag(conn, tags[0])  # Sadece ilk tag kullanılıyor
+        tag_id = get_or_create_tag(conn, tags[0]) 
     pub_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     cur = conn.cursor()
     cur.execute(
@@ -60,7 +71,7 @@ def insert_post_to_db(title, content, description, tags):
         INSERT INTO post_post (title, content, content_preview, pub_date, author_id, is_index_post, tag_id)
         VALUES (%s, %s, %s, %s, %s, %s, %s)
         """,
-        (title, content, description, pub_date, 2, False, tag_id)
+        (title, content, description, pub_date, author_id, False, tag_id)
     )
     conn.commit()
     cur.close()
