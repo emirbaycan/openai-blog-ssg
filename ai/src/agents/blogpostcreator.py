@@ -44,11 +44,11 @@ def get_or_create_tag(conn, tag_name):
 
 def insert_post_to_db(title, content, description, tags):
     conn = psycopg2.connect(
-        host=os.environ.get("PGHOST", "localhost"),
-        port=os.environ.get("PGPORT", 5432),
-        dbname=os.environ.get("PGDATABASE"),
-        user=os.environ.get("PGUSER"),
-        password=os.environ.get("PGPASSWORD"),
+        host=os.environ.get("POSTGRES_HOST", "localhost"),
+        port=os.environ.get("POSTGRES_PORT", 5432),
+        dbname=os.environ.get("POSTGRES_DB"),
+        user=os.environ.get("POSTGRES_USER"),
+        password=os.environ.get("POSTGRES_PASSWORD"),
     )
     tag_id = None
     if tags and len(tags) > 0:
