@@ -22,6 +22,15 @@ jobs:
         script: |
           mkdir -p /var/www/blog
 
+    - name: Upload .env file
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          echo "${{ secrets.ENV_FILE }}" > /var/www/blog/.env
+
     - name: Copy project files via SSH
       uses: appleboy/scp-action@v0.1.4
       with:
@@ -41,3 +50,4 @@ jobs:
           cd /var/www/blog
           docker-compose down
           docker-compose up -d --build
+      timeout: 600
