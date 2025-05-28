@@ -3,3 +3,4 @@ python-dotenv
 faiss-cpu
 bs4
 requests
+psycopg2-binary

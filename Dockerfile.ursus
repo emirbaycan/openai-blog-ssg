@@ -4,13 +4,16 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY ./ursus/requirements.txt /app/requirements.txt
+
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY ./ursus ./ursus
 
-# The blog content folder is expected to be mounted at /app/frontend/content/blog
-VOLUME ["/app/frontend/content/blog"]
+COPY ./bin/ursus /app/bin/ursus
 
-# If your entrypoint differs, change it accordingly
-CMD ["python", "-m", "ursus"]
+RUN chmod +x /app/bin/ursus
+
+RUN pip install .
+
+CMD ["python", "./bin/ursus"]

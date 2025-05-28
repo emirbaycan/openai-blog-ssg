@@ -39,9 +39,7 @@ DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS', default='localhost').split(',')
 
-# Note, this assumes that the CSRF and ALLOWED hosts are the same!
-ALLOWED_HOSTS = hosts
-CSRF_TRUSTED_ORIGINS = ['http://' + host for host in hosts] + ['https://' + host for host in hosts]
+CSRF_TRUSTED_ORIGINS = ['http://' + host for host in ALLOWED_HOSTS] + ['https://' + host for host in ALLOWED_HOSTS]
 
 # Application definition
 

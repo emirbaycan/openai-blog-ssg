@@ -11,11 +11,12 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements and install
-COPY requirements.txt .
+COPY ./ai/requirements.txt /app/requirements.txt
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy all project files
-COPY . .
+COPY ai/. .
 
 # Optional: Make .env available (or mount as volume)
 # COPY .env .env

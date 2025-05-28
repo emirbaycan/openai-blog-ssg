@@ -15,8 +15,8 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY ./admin /app
 
-ENV DJANGO_SETTINGS_MODULE=admin.blog.settings
+ENV DJANGO_SETTINGS_MODULE=blog.settings
 
 RUN mkdir -p /app/static
 
-CMD ["gunicorn", "admin.blog.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "blog.wsgi:application", "--bind", "0.0.0.0:8000"]

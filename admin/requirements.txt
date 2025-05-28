@@ -8,3 +8,4 @@ sqlparse==0.4.4
 tinycss2==1.2.1
 django-environ==0.11.2
 psycopg2-binary
+requests

@@ -20,9 +20,10 @@ services:
     volumes:
       - ./admin:/app
       - ./frontend/content/blog:/app/blog_content
-      - ./admin/static:/usr/share/nginx/static:ro 
+      - ./admin/static:/app/staticfiles
     environment:
       - DJANGO_STATIC_ROOT=/usr/share/nginx/static
+      - PYTHONPATH=/app
     env_file:
       - .env
     ports:
@@ -37,12 +38,16 @@ services:
       context: .
       dockerfile: Dockerfile.ursus
     volumes:
+      - ./ursus:/app/ursus
+      - ./bin/ursus:/app/bin/ursus:ro
       - ./frontend/content/blog:/app/frontend/content/blog:ro
       - ./output:/app/output
       - ./ursus_config.py:/app/ursus_config.py:ro   
+    environment:
+      - PYTHONPATH=/app
     env_file:
       - .env
-    command: ["python", "-m", "ursus"]
+    command: ["python", "./bin/ursus"]
 
   ai:
     build:
