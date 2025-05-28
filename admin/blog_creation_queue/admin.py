@@ -21,7 +21,7 @@ class BlogCreationQueueAdmin(admin.ModelAdmin):
         for entry in queryset:
             try:
                 resp = requests.post(
-                    "http://ai:5000/generate/",  # docker-compose ile 'ai' container adı üzerinden erişiyorsun
+                    "http://ai:5000/generate/", 
                     json={"title_id": entry.id},
                     timeout=60
                 )

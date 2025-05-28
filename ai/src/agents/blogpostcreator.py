@@ -57,10 +57,10 @@ def insert_post_to_db(title, content, description, tags):
     cur = conn.cursor()
     cur.execute(
         """
-        INSERT INTO post_post (title, content, content_preview, pub_date, is_index_post, tag_id)
-        VALUES (%s, %s, %s, %s, %s, %s)
+        INSERT INTO post_post (title, content, content_preview, pub_date, author, is_index_post, tag_id)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
         """,
-        (title, content, description, pub_date, False, tag_id)
+        (title, content, description, pub_date, 1, False, tag_id)
     )
     conn.commit()
     cur.close()
