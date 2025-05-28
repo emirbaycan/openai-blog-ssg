@@ -10,6 +10,8 @@ import openai
 from agents.prompts import BLOG_CREATOR_PROMPT
 from agents.process_blog_post import extract_description_and_tags
 
+import psycopg2
+
 load_dotenv()  # .env'den OPENAI_API_KEY alınır
 
 FRONTEND_BLOG_DIR = Path(__file__).parent.parent.parent.parent / "frontend" / "content" / "blog"
@@ -25,6 +27,47 @@ def sanitize_filename(title):
     name = name.replace(" ", "-")
     return name[:48] + ".md"  # Çok uzun başlıkları kes
 
+def get_or_create_tag(conn, tag_name):
+    cur = conn.cursor()
+    # Tag’i bulmaya çalış
+    cur.execute("SELECT id FROM tag_tag WHERE name = %s", (tag_name,))
+    result = cur.fetchone()
+    if result:
+        tag_id = result[0]
+    else:
+        # Yoksa ekle
+        cur.execute("INSERT INTO tag_tag (name) VALUES (%s) RETURNING id", (tag_name,))
+        tag_id = cur.fetchone()[0]
+        conn.commit()
+    cur.close()
+    return tag_id
+
+def insert_post_to_db(title, content, description, tags):
+    conn = psycopg2.connect(
+        host=os.environ.get("PGHOST", "localhost"),
+        port=os.environ.get("PGPORT", 5432),
+        dbname=os.environ.get("PGDATABASE"),
+        user=os.environ.get("PGUSER"),
+        password=os.environ.get("PGPASSWORD"),
+    )
+    tag_id = None
+    if tags and len(tags) > 0:
+        tag_id = get_or_create_tag(conn, tags[0])  # Sadece ilk tag kullanılıyor
+    pub_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    cur = conn.cursor()
+    cur.execute(
+        """
+        INSERT INTO post_post (title, content, content_preview, pub_date, is_index_post, tag_id)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """,
+        (title, content, description, pub_date, False, tag_id)
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    print(f"[INFO] Post inserted into database: {title} (tag: {tags[0] if tag_id else None})")
+    
+    
 class BlogPostCreator:
     def __init__(self, keyword, number_of_web_references=3):
         self.keyword = keyword
@@ -83,6 +126,9 @@ class BlogPostCreator:
         """
         with open(filepath, 'w', encoding="utf-8") as f:
             f.write(frontmatter)
+            
+        insert_post_to_db(title, body, description, tags)
+        
         print(f"[SUCCESS] File saved as {filepath}")
         return filepath
 
@@ -120,11 +166,13 @@ class BlogPostCreator:
             if not blog_content:
                 print("[WARN] AI returned empty content.")
                 return None
+            
+            
             return self.save_markdown(
                 title=self.keyword,
                 body=blog_content,
                 tags=["ai", "auto"],
-                description=f"Auto-generated blog for {self.keyword}"
+                description=f"{self.keyword}"
             )
         except Exception as e:
             print(f"[ERROR] OpenAI error: {e}")
