@@ -44,7 +44,7 @@ import subprocess
 def run_ursus():
     try:
         result = subprocess.run(
-            ["python", "/app/bin/ursus", "build"],
+            ["python", "/app/bin/ursus"],
             cwd="/app",
             capture_output=True,
             text=True,
