@@ -67,8 +67,6 @@ services:
       - ./output:/app/output
       - ./ursus_config.py:/app/ursus_config.py:ro   
       - ./.git:/app/.git:ro
-    environment:
-      - PYTHONPATH=/app
     env_file:
       - .env
 
