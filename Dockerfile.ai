@@ -12,6 +12,16 @@ COPY ./ai/requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY ./ursus /app/ursus
+COPY ./setup.py /app/setup.py
+COPY ./SITE_README.md /app/README.md
+
+RUN pip install .
+
+RUN git init
+
+RUN git config --global --add safe.directory /app
+
 COPY ai/. .
 
 # Hem API hem arka plan daily job çalışır!
