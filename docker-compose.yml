@@ -61,10 +61,9 @@ services:
       - ./ai:/app
       - ./ursus:/app/ursus
       - ./bin/ursus:/app/bin/ursus:ro
-      - ./frontend/content/blog:/app/blog_content 
+      - ./frontend/content/blog:/app/blog_content
       - ./frontend/content:/app/frontend/content:ro
       - ./frontend/templates:/app/frontend/templates:ro
-      - ./bin/ursus:/app/bin/ursus:ro
       - ./output:/app/output
       - ./ursus_config.py:/app/ursus_config.py:ro   
       - ./.git:/app/.git:ro
