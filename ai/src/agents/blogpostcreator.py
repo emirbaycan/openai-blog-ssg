@@ -12,7 +12,7 @@ from src.agents.process_blog_post import extract_description_and_tags
 
 import psycopg2
 
-load_dotenv()  # .env'den OPENAI_API_KEY alınır
+load_dotenv()  
 
 FRONTEND_BLOG_DIR = Path(__file__).parent.parent.parent / "frontend" / "content" / "blog"
 

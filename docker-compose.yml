@@ -40,8 +40,8 @@ services:
     volumes:
       - ./ursus:/app/ursus
       - ./bin/ursus:/app/bin/ursus:ro
-      - ./frontend/content:/app/frontend/content:ro
-      - ./frontend/templates:/app/frontend/templates:ro
+      - ./frontend/content:/app/frontend/content
+      - ./frontend/templates:/app/frontend/templates
       - ./output:/app/output
       - ./ursus_config.py:/app/ursus_config.py:ro   
       - ./.git:/app/.git:ro
@@ -60,7 +60,13 @@ services:
     volumes:
       - ./ai:/app
       - ./frontend/content/blog:/app/frontend/content/blog 
+      - ./ursus:/app/ursus
       - ./bin/ursus:/app/bin/ursus:ro
+      - ./frontend/content:/app/frontend/content
+      - ./frontend/templates:/app/frontend/templates
+      - ./output:/app/output
+      - ./ursus_config.py:/app/ursus_config.py:ro   
+      - ./.git:/app/.git:ro
     environment:
       - PYTHONPATH=/app
     env_file:
