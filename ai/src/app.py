@@ -42,12 +42,23 @@ def mark_title_as_processed(title_id):
 import subprocess
 
 def run_ursus():
-    subprocess.run(["python", "/app/bin/ursus", "build"], check=True)
     try:
-        subprocess.run(["python", ursus_path], check=True)
-        print("[*] Ursus completed.")
-    except Exception as e:
-        print(f"[!] Ursus error: {e}")
+        result = subprocess.run(
+            ["python", "/app/bin/ursus", "build"],
+            cwd="/app",
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        print(result.stdout)
+        print(result.stderr)
+    except subprocess.CalledProcessError as e:
+        print("[!] Ursus error:")
+        print("STDOUT:")
+        print(e.stdout)
+        print("STDERR:")
+        print(e.stderr)
+        print("Exception:", e)
 
 def process_title(title_id, web_references=3):
     row = fetch_title_by_id(title_id)
