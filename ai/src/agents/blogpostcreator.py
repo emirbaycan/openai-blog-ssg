@@ -126,15 +126,15 @@ class BlogPostCreator:
         directory = FRONTEND_BLOG_DIR
         os.makedirs(directory, exist_ok=True)
         filepath = directory / filename
-        frontmatter = f"""---
-            title: {title}
-            description: {description}
-            date_created: {datetime.now().strftime('%Y-%m-%d')}
-            tags: {tags}
-            ---
-
-            {body}
-        """
+        frontmatter = (
+            f"---\n"
+            f"title: {title}\n"
+            f"description: {description}\n"
+            f"date_created: {datetime.now().strftime('%Y-%m-%d')}\n"
+            f"tags: {tags}\n"
+            f"---\n\n"
+            f"{body}"
+        )
         with open(filepath, 'w', encoding="utf-8") as f:
             f.write(frontmatter)
             
