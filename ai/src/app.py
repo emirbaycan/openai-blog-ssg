@@ -42,7 +42,7 @@ def mark_title_as_processed(title_id):
 import subprocess
 
 def run_ursus():
-    ursus_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../bin/ursus"))
+    subprocess.run(["python", "/app/bin/ursus"], check=True)
     try:
         subprocess.run(["python", ursus_path], check=True)
         print("[*] Ursus completed.")
