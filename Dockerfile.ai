@@ -16,14 +16,15 @@ COPY ai/. .
 COPY ./ursus /app/ursus
 COPY ./setup.py /app/setup.py
 
-RUN pip install .
-
 COPY ./SITE_README.md /app/README.md
 COPY ./bin/ursus /app/bin/ursus
-RUN chmod +x /app/bin/ursus
 COPY ./ursus_config.py /app/ursus_config.py
 
+RUN chmod +x /app/bin/ursus
+
 ENV PYTHONPATH=/app:/app/src
+
+RUN pip install .
 
 RUN git init
 RUN git config --global --add safe.directory /app
