@@ -51,3 +51,18 @@ jobs:
           docker-compose down
           docker-compose up -d --build
       timeout-minutes: 30 
+      - name: Deploy to Server
+        run: |
+          # your deploy script or docker compose up -d --build
+
+    - name: Ping Google with new sitemap
+      run: |
+        curl "https://www.google.com/ping?sitemap=https://blog.emirbaycan.com.tr/sitemap.xml"
+
+    - name: Ping Bing with new sitemap
+      run: |
+        curl "https://www.bing.com/ping?sitemap=https://blog.emirbaycan.com.tr/sitemap.xml"
+
+    - name: Ping Yandex with new sitemap
+      run: |
+        curl "https://webmaster.yandex.com/ping?sitemap=https://blog.emirbaycan.com.tr/sitemap.xml"

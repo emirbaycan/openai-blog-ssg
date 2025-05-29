@@ -4,6 +4,7 @@ from ursus import build, lint, translate
 from ursus.config import config
 from ursus.server import serve, serve_async
 from ursus.utils import import_module_or_path
+from ursus.sitemap import generate_sitemap
 import argparse
 import logging
 import sys
@@ -77,6 +78,7 @@ if __name__ == '__main__':
         logging.info(f"Output path: {str(config.output_path)}")
         try:
             build(args.watch)
+            generate_sitemap(str(config.output_path), config.site_url)
         except:
             logging.exception("Could not generate site")
             sys.exit(1)

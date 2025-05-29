@@ -4,8 +4,23 @@ from src.agents.blogpostcreator import BlogPostCreator
 from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
+import requests
 
 load_dotenv(dotenv_path=Path(__file__).parent.parent.parent / ".env")
+
+def ping_search_engines(sitemap_url):
+    engines = [
+        f"https://www.google.com/ping?sitemap={sitemap_url}",
+        f"https://www.bing.com/ping?sitemap={sitemap_url}",
+        f"https://webmaster.yandex.com/ping?sitemap={sitemap_url}",
+    ]
+    for url in engines:
+        try:
+            resp = requests.get(url, timeout=5)
+            print(f"[*] Pinged: {url} - Status: {resp.status_code}")
+        except Exception as e:
+            print(f"[!] Ping error: {url} - {e}")
+
 
 def get_db_connection():
     return psycopg2.connect(
@@ -81,6 +96,9 @@ def process_title(title_id, web_references=3):
         try:
             run_ursus()
             print("[*] Ursus completed.")
+            sitemap_url = "https://blog.emirbaycan.com.tr/sitemap.xml"
+            ping_search_engines(sitemap_url)
+            print("[*] Search engines notified.")
         except Exception as e:
             print(f"[!] Ursus error: {e}")
 
