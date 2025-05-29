@@ -58,10 +58,6 @@ jobs:
           curl --fail --silent https://blog.emirbaycan.com.tr/sitemap.xml && break || sleep 3
         done
 
-    - name: Ping Google with new sitemap
-      run: |
-        curl "https://www.google.com/ping?sitemap=https://blog.emirbaycan.com.tr/sitemap.xml"
-
     - name: Ping Bing with new sitemap
       run: |
         curl "https://www.bing.com/ping?sitemap=https://blog.emirbaycan.com.tr/sitemap.xml"
