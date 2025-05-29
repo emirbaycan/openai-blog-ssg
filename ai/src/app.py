@@ -77,13 +77,6 @@ def process_title(title_id, web_references=3):
         print(f"[*] Saved: {filepath}")
         mark_title_as_processed(title_id)
 
-        print("[*] Running Ursus static site generator...")
-        try:
-            run_ursus()
-            print("[*] Ursus completed.")
-        except Exception as e:
-            print(f"[!] Ursus error: {e}")
-
     except Exception as e:
         print(f"[!] Exception for {title}: {e}")
 

@@ -59,14 +59,10 @@ services:
       - "5000:5000"
     volumes:
       - ./ai:/app
-      - ./ursus:/app/ursus
+      - ./frontend/content/blog:/app/frontend/content/blog 
       - ./bin/ursus:/app/bin/ursus:ro
-      - ./frontend/content/blog:/app/blog_content
-      - ./frontend/content:/app/frontend/content:ro
-      - ./frontend/templates:/app/frontend/templates:ro
-      - ./output:/app/output
-      - ./ursus_config.py:/app/ursus_config.py:ro   
-      - ./.git:/app/.git:ro
+    environment:
+      - PYTHONPATH=/app
     env_file:
       - .env
 

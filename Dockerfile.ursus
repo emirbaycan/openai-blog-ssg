@@ -26,4 +26,4 @@ RUN git init
 
 RUN git config --global --add safe.directory /app
 
-CMD ["python", "./bin/ursus"]
+CMD ["python", "./bin/ursus" , '-w']

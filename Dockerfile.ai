@@ -5,31 +5,16 @@ FROM python:3.11-slim
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
-    git \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-COPY ./ai/requirements.txt /app/requirements-ai.txt
-COPY ./ursus/requirements.txt /app/requirements-ursus.txt
+COPY ./ai/requirements.txt /app/requirements.txt
 
-RUN pip install --no-cache-dir -r requirements-ai.txt
-RUN pip install --no-cache-dir -r requirements-ursus.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ai/. .
-COPY ./ursus /app/ursus
-COPY ./setup.py /app/setup.py
-
-COPY ./SITE_README.md /app/README.md
-COPY ./bin /app/bin 
-RUN chmod +x /app/bin/ursus 
-COPY ./ursus_config.py /app/ursus_config.py
 
 ENV PYTHONPATH=/app:/app/src
-
-RUN pip install .
-
-RUN git init 
-RUN git config --global --add safe.directory /app
 
 # Hem API hem arka plan daily job çalışır!
 CMD /bin/sh -c "uvicorn src.ai_api:app --host 0.0.0.0 --port 5000 & while true; do sleep 86400; echo \"[CRON] \$(date): processing blog title\"; python ai/scripts/dispatch_one_job.py; done"
