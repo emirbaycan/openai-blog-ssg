@@ -60,6 +60,7 @@ services:
     volumes:
       - ./ai:/app
       - ./frontend/content/blog:/app/blog_content 
+      - ./bin/ursus:/app/bin/ursus:ro
     env_file:
       - .env
 
