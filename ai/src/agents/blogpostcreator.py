@@ -7,8 +7,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 import openai
 
-from agents.prompts import BLOG_CREATOR_PROMPT
-from agents.process_blog_post import extract_description_and_tags
+from src.agents.prompts import BLOG_CREATOR_PROMPT
+from src.agents.process_blog_post import extract_description_and_tags
 
 import psycopg2
 

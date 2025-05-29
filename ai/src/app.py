@@ -1,6 +1,6 @@
 import os
 import psycopg2
-from agents.blogpostcreator import BlogPostCreator
+from src.agents.blogpostcreator import BlogPostCreator
 from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
