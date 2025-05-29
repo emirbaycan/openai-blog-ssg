@@ -39,6 +39,16 @@ def mark_title_as_processed(title_id):
             """, (title_id,))
     conn.close()
 
+import subprocess
+
+def run_ursus():
+    ursus_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../bin/ursus"))
+    try:
+        subprocess.run(["python", ursus_path], check=True)
+        print("[*] Ursus completed.")
+    except Exception as e:
+        print(f"[!] Ursus error: {e}")
+
 def process_title(title_id, web_references=3):
     row = fetch_title_by_id(title_id)
     if not row:
@@ -55,6 +65,14 @@ def process_title(title_id, web_references=3):
             return
         print(f"[*] Saved: {filepath}")
         mark_title_as_processed(title_id)
+
+        print("[*] Running Ursus static site generator...")
+        try:
+            run_ursus()
+            print("[*] Ursus completed.")
+        except Exception as e:
+            print(f"[!] Ursus error: {e}")
+
     except Exception as e:
         print(f"[!] Exception for {title}: {e}")
 
