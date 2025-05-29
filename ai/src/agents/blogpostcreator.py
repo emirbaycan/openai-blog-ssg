@@ -59,7 +59,7 @@ def insert_post_to_db(title, content, description, tags):
         password=os.environ.get("POSTGRES_PASSWORD"),
     )
     
-    author_id = get_ai_bot_user_id(conn, "ai-bot") 
+    author_id = get_ai_bot_user_id(conn, "root") 
     
     tag_id = None
     if tags and len(tags) > 0:
