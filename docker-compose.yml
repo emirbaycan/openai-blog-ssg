@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile.admin
     volumes:
       - ./admin:/app
-      - ./frontend/content/blog:/app/blog_content
+      - ./frontend/content/blog:/app/frontend/content/blog
       - ./admin/static:/app/staticfiles
     environment:
       - DJANGO_STATIC_ROOT=/usr/share/nginx/static

@@ -14,7 +14,7 @@ import psycopg2
 
 load_dotenv()  # .env'den OPENAI_API_KEY alınır
 
-FRONTEND_BLOG_DIR = Path(__file__).parent.parent.parent.parent / "frontend" / "content" / "blog"
+FRONTEND_BLOG_DIR = Path(__file__).parent.parent.parent / "frontend" / "content" / "blog"
 
 def sanitize_filename(title):
     # Türkçe karakter dönüşüm tablosu
