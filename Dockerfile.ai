@@ -20,6 +20,9 @@ RUN pip install .
 
 COPY ./SITE_README.md /app/README.md
 COPY ./bin/ursus /app/bin/ursus
+
+RUN chmod +x /app/bin/ursus
+
 COPY ./ursus_config.py /app/ursus_config.py
 
 ENV PYTHONPATH=/app:/app/src
