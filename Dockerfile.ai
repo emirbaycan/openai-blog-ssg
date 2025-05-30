@@ -19,6 +19,7 @@ COPY ./setup.py /app/setup.py
 COPY ./SITE_README.md /app/README.md
 COPY ./bin/ursus /app/bin/ursus
 COPY ./ursus_config.py /app/ursus_config.py
+COPY ./SITE_README.md /app/README.md
 
 RUN chmod +x /app/bin/ursus
 
